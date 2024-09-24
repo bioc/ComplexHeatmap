@@ -1,4 +1,4 @@
-CHANGES in VERSION 2.15.5
+CHANGES in VERSION 2.21.1
 
 * `pheatmap()`: `na_col` is passed to `Heatmap()`.
 
