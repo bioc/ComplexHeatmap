@@ -1,3 +1,9 @@
+CHANGES in VERSION 2.15.5
+
+* `pheatmap()`: `na_col` is passed to `Heatmap()`.
+
+=======================
+
 CHANGES in VERSION 2.15.3
 
 * `Legend()`: `legend_gp` also controls line color, width and style.

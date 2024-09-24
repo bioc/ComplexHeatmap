@@ -463,6 +463,7 @@ pheatmap = function(mat,
     }
 
     ### default from pheatmap
+    ht_param$na_col = na_col
     ht_param$name = name
     ht_param$row_dend_reorder = FALSE
     ht_param$column_dend_reorder = FALSE
