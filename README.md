@@ -1,34 +1,40 @@
-[![Build Status](https://travis-ci.org/jokergoo/ComplexHeatmap.svg)](https://travis-ci.org/jokergoo/ComplexHeatmap)
+# Make Complex Heatmaps <a href="https://jokergoo.github.io/ComplexHeatmap-reference/book/"><img src="https://jokergoo.github.io/ComplexHeatmap-reference/book/complexheatmap-cover.jpg" width=240 align="right" style="border:2px solid black;" ></a>
 
-Make Complex Heatmaps
-=========================
+[![R-CMD-check](https://github.com/jokergoo/ComplexHeatmap/workflows/R-CMD-check/badge.svg)](https://github.com/jokergoo/ComplexHeatmap/actions)
+[![codecov](https://img.shields.io/codecov/c/github/jokergoo/ComplexHeatmap.svg)](https://codecov.io/github/jokergoo/ComplexHeatmap) 
+[![bioc](http://www.bioconductor.org/shields/downloads/devel/ComplexHeatmap.svg)](https://bioconductor.org/packages/stats/bioc/ComplexHeatmap/) 
+[![bioc](http://www.bioconductor.org/shields/years-in-bioc/ComplexHeatmap.svg)](http://bioconductor.org/packages/devel/bioc/html/ComplexHeatmap.html)
 
-Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential features. Here the ComplexHeatmap package provides a highly flexible way to arrange multiple heatmaps and supports self-defined annotation graphics.
+<img src="http://jokergoo.github.io/complexheatmap_logo.svg" width="550">
 
-A single heatmap or a list of heatmaps are composed by basic components:
 
-![default](https://cloud.githubusercontent.com/assets/449218/6541828/75c77f8a-c4e5-11e4-80af-6ebb5e649898.png)
+Complex heatmaps are efficient to visualize associations between different
+sources of data sets and reveal potential patterns. Here the
+**ComplexHeatmap** package provides a highly flexible way to arrange multiple
+heatmaps and supports various annotation graphics.
 
-The package makes heatmaps in an object-oriented way by abstracting heatmaps into several classes:
+The [**InteractiveComplexHeatmap**](https://github.com/jokergoo/InteractiveComplexHeatmap) package can directly export static complex heatmaps into an interactive Shiny app. Have a try!
 
-- `Heatmap` a single heatmap
-- `HeatmapList` a list of heatmaps
-- `HeatmapAnnotation` annotation on columns or rows
+## Citation
 
-and provides methods for arranging and plotting heatmap components.
+Zuguang Gu, et al., [Complex heatmaps reveal patterns and correlations in multidimensional genomic data](http://bioinformatics.oxfordjournals.org/content/early/2016/05/20/bioinformatics.btw313.abstract), Bioinformatics, 2016.
+
+Zuguang Gu. [Complex Heatmap Visualization](https://doi.org/10.1002/imt2.43), iMeta, 2022. 
+
 
 ## Install
 
-`ComplexHeatmap` is available on Bioconductor, you can intall it by:
+`ComplexHeatmap` is available on [Bioconductor](http://www.bioconductor.org/packages/devel/bioc/html/ComplexHeatmap.html), you can install it by:
 
-```{r}
-source("http://bioconductor.org/biocLite.R")
-biocLite("ComplexHeatmap")
+```r
+if (!requireNamespace("BiocManager", quietly=TRUE))
+    install.packages("BiocManager")
+BiocManager::install("ComplexHeatmap")
 ```
 
 If you want the latest version, install it directly from GitHub:
 
-```{r}
+```r
 library(devtools)
 install_github("jokergoo/ComplexHeatmap")
 ```
@@ -37,61 +43,78 @@ install_github("jokergoo/ComplexHeatmap")
 
 Make a single heatmap:
 
-```{r}
+```r
 Heatmap(mat, ...)
 ```
 
 A single Heatmap with column annotations:
 
-```{r}
+```r
 ha = HeatmapAnnotation(df = anno1, anno_fun = anno2, ...)
 Heatmap(mat, ..., top_annotation = ha)
 ```
 
 Make a list of heatmaps:
 
-```{r}
+```r
 Heatmap(mat1, ...) + Heatmap(mat2, ...)
 ```
 
 Make a list of heatmaps and row annotations:
 
-```{r}
+```r
 ha = HeatmapAnnotation(df = anno1, anno_fun = anno2, ..., which = "row")
 Heatmap(mat1, ...) + Heatmap(mat2, ...) + ha
 ```
 
-## As a base package
+## Documentation
 
-**ComplexHeatmap** can be used as a base package to build other packages which focus
-On specific applications. E.g. [EnrichedHeatmap](http://github.com/jokergoo/EnrichedHeatmap) package
-uses **ComplexHeatmap** as base to make heatmaps which visualize the enrichment of genomic signals
-to specific target regions.
+The full documentations are available at https://jokergoo.github.io/ComplexHeatmap-reference/book/ and the website is at https://jokergoo.github.io/ComplexHeatmap.
 
-## Visualize high dimensional genomic data
+## Blog posts
 
-The examples visualizes correlation between methylation and expression, as well as other annotation information (data are randomly generated). In the heatmap, each row corresponds to a differentially methylated regions (DMRs). 
-From left to right, heatmaps are:
+There are following blog posts focusing on specific topics:
 
-1. methylation for each DMRs in samples.
-2. direction of the methylation (one column heatmap), i.e. is methylation hyper in tumor or hypo?
-3. expression for the genes that are associated with corresponding DMRs (e.g. closest gene).
-4. signiciance for the correlation between methylation and expression (-log10(p-value)).
-5. type of genes, i.e. is the gene a protein coding gene or a lincRNA?
-6. annotation to gene models, i.e. is the DMR located in the intragenic region of the corresponding gene or the DMR is intergenic?
-7. distance from the DMR to the TSS of the corresponding gene.
-8. overlapping between DMRs and enhancers (Color shows how much the DMR is covered by the enhancers).
+- [Make 3D heatmap](https://jokergoo.github.io/2021/03/24/3d-heatmap/)
+- [Translate from pheatmap to ComplexHeatmap](https://jokergoo.github.io/2020/05/06/translate-from-pheatmap-to-complexheatmap/)
+- [Set cell width/height in the heatmap](https://jokergoo.github.io/2020/05/11/set-cell-width/height-in-the-heatmap/)
+- [Interactive ComplexHeatmap](https://jokergoo.github.io/2020/05/15/interactive-complexheatmap/)
+- [Word cloud as heatmap annotation](https://jokergoo.github.io/2020/05/31/word-cloud-as-heatmap-annotation/)
+- [Which heatmap function is faster?](https://jokergoo.github.io/2020/06/19/which-heatmap-function-is-faster/)
+- [Rasterization in ComplexHeatmap](https://jokergoo.github.io/2020/06/30/rasterization-in-complexheatmap/)
+- [Block annotation over several slices](https://jokergoo.github.io/2020/07/06/block-annotation-over-several-slices/)
+- [Integrate ComplexHeatmap with cowplot package](https://jokergoo.github.io/2020/07/14/integrate-complexheatmap-with-cowplot-package/)
 
-![example](https://cloud.githubusercontent.com/assets/449218/6862097/1bc46436-d443-11e4-91f5-431bc9210c80.png)
 
-## OncoPrint
+## Examples
 
-<a href="http://www.cbioportal.org/faq.jsp#what-are-oncoprints">OncoPrint</a> visualize multiple genomic alteration
-events through a heatmap. From verion 1.3.0, **ComplexHeatmap** package provides a new `oncoPrint()` function. By this
-function, users can define their own graphics which correspond to differnet alteration events. Also the function additionally
-add barplots on two sides of the heatmap which tell number of different alterations in patients or samples.
+### Visualize Methylation Profile with Complex Annotations
 
-With general functionality of **ComplexHeamtap**, you can add more heatmaps / row annotations to the oncoPrint, even split the
-oncoPrint to enphasize sub groups.
+![complexheatmap_example4](https://user-images.githubusercontent.com/449218/47718635-2ec22980-dc49-11e8-9f01-37becb19e0d5.png)
 
-![oncoprint](https://cloud.githubusercontent.com/assets/449218/9370313/9c9b6b00-46cf-11e5-9740-c5c2a7a40eb5.png)
+### Correlations between methylation, expression and other genomic features
+
+![complexheatmap_example3](https://user-images.githubusercontent.com/449218/47718636-2ec22980-dc49-11e8-8db0-1659c27dcf40.png)
+
+### Visualize Cell Heterogeneity from Single Cell RNASeq
+
+![complexheatmap_example2](https://user-images.githubusercontent.com/449218/47718637-2ec22980-dc49-11e8-925e-955c16cfa982.png)
+
+### Making Enhanced OncoPrint
+
+![complexheatmap_example1](https://user-images.githubusercontent.com/449218/47718638-2ec22980-dc49-11e8-845e-21e51d3b8e73.png)
+
+### UpSet plot
+
+<img src="https://user-images.githubusercontent.com/449218/102615477-48c76a80-4136-11eb-98d9-3c528844fbe8.png" width=500 />
+
+### 3D heatmap
+
+![image](https://user-images.githubusercontent.com/449218/112284448-8c77c600-8c89-11eb-8d38-c5538900df20.png)
+
+
+
+## License
+
+MIT @ Zuguang Gu
+
