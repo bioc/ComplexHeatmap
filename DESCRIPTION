@@ -1,7 +1,7 @@
 Package: ComplexHeatmap
 Type: Package
 Title: Make Complex Heatmaps
-Version: 2.28.0
+Version: 2.29.0
 Date: 2026-01-30
 Authors@R: person("Zuguang", "Gu", email = "guzuguang@suat-sz.edu.cn", role = c("aut", "cre"),
                   comment = c('ORCID'="0000-0002-7395-8709"))
